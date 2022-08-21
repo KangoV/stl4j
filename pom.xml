@@ -1,34 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<!-- ======================================================================= -->
-<!--                                                                         -->
-<!--   Copyright (c) 2010, The JAVATUPLES team (http://www.javatuples.org)   -->
-<!--                                                                         -->
-<!--   Licensed under the Apache License, Version 2.0 (the "License");       -->
-<!--   you may not use this file except in compliance with the License.      -->
-<!--   You may obtain a copy of the License at                               -->
-<!--                                                                         -->
-<!--       http://www.apache.org/licenses/LICENSE-2.0                        -->
-<!--                                                                         -->
-<!--   Unless required by applicable law or agreed to in writing, software   -->
-<!--   distributed under the License is distributed on an "AS IS" BASIS,     -->
-<!--   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or       -->
-<!--   implied. See the License for the specific language governing          -->
-<!--   permissions and limitations under the License.                        -->
-<!--                                                                         -->
-<!-- ======================================================================= -->
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   
   <modelVersion>4.0.0</modelVersion>
-  <groupId>org.javatuples</groupId>
-  <artifactId>javatuples</artifactId>
+  <groupId>uk.aspyr</groupId>
+  <artifactId>stl4j</artifactId>
   <packaging>bundle</packaging>
-  <version>1.3-SNAPSHOT</version>
-  <name>javatuples</name>
-  <url>http://www.javatuples.org</url>
+  <version>1.0-SNAPSHOT</version>
+  <name>STL4J</name>
 
-  <description>Java library for tuples in Java.</description>
+  <description>Simple Tuple Library For Java</description>
 
   <licenses>
     <license>
@@ -38,28 +18,12 @@
     </license>
   </licenses>
 
-  <organization>
-    <name>The JAVATUPLES team</name>
-    <url>http://www.javatuples.org</url>
-  </organization>
-  
   <scm>
-    <url>scm:git:git@github.com:javatuples/javatuples.git</url>
-    <connection>scm:git:git@github.com:javatuples/javatuples.git</connection>
-    <developerConnection>scm:git:git@github.com:javatuples/javatuples.git</developerConnection>
+    <url>scm:git:git@github.com:KangoV/stl4j.git</url>
+    <connection>scm:git:git@github.com:KangoV/stl4j.git</connection>
+    <developerConnection>scm:git:git@github.com:KangoV/stl4j.git</developerConnection>
   </scm>
-  
-  <developers>
-    <developer>
-      <id>dfernandez</id>
-      <name>Daniel Fernandez</name>
-      <email>dfernandez AT users.sourceforge.net</email>
-      <roles>
-        <role>Project admin</role>
-      </roles>
-    </developer>
-  </developers>
-  
+
   <distributionManagement>
     <snapshotRepository>
       <id>sonatype-nexus-snapshots</id>
@@ -73,14 +37,12 @@
     </repository>
   </distributionManagement>
 
-
   <build>
-  
+
     <resources>
       <resource>
         <directory>src/main/resources</directory>
       </resource>
-    
       <resource>
           <directory>.</directory>
           <targetPath>META-INF</targetPath>
@@ -89,7 +51,6 @@
               <include>NOTICE.txt</include>
           </includes>
       </resource>
-      
     </resources>
     
     <testResources>
@@ -105,8 +66,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
 		<version>2.4</version>
         <configuration>
-          <source>1.5</source>
-          <target>1.5</target>
+          <source>8</source>
+          <target>8</target>
         </configuration>
       </plugin>
       
@@ -143,42 +104,7 @@
           </execution>
         </executions>
       </plugin>
-      
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-gpg-plugin</artifactId>
-		<version>1.4</version>
-        <executions>
-          <execution>
-            <id>sign-artifacts</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>sign</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-       
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-assembly-plugin</artifactId>
-        <version>2.2</version>
-        <configuration>
-          <descriptors>
-            <descriptor>src/assembly/dist.xml</descriptor>
-          </descriptors>
-        </configuration>
-        <executions>
-          <execution>
-            <id>make-assembly-deps</id>
-            <phase>package</phase>
-            <goals>
-              <goal>single</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>
@@ -215,27 +141,42 @@
     
   </build>
 
-
-
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.junit</groupId>
+        <artifactId>junit-bom</artifactId>
+        <version>5.9.0</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <dependencies>
-    
     <dependency>
       <groupId>commons-lang</groupId>
       <artifactId>commons-lang</artifactId>
-      <version>2.5</version>
+      <version>2.6</version>
       <scope>test</scope>
     </dependency>
-    
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.8.2</version>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
       <scope>test</scope>
     </dependency>
-    
-    
+    <dependency>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
+      <version>3.23.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>nl.jqno.equalsverifier</groupId>
+      <artifactId>equalsverifier</artifactId>
+      <version>3.10.1</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
-
   
 </project>

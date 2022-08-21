@@ -1,5 +1,5 @@
  
- Using javatuples from Maven 2
+ Using stl4j from Maven 2
  -----------------------------
  
  
@@ -7,14 +7,14 @@
  a dependency with:
 
      <dependency>
-       <groupId>org.javatuples</groupId>
-       <artifactId>javatuples</artifactId>
+       <groupId>uk.aspyr</groupId>
+       <artifactId>stl4j</artifactId>
        <version>{version}</version>
        <scope>compile</scope>
      </dependency>
 
  In order for this to work correctly, you need to have previously installed
- javatuples in your local repository (as explained in BUILD.txt) or have a
- working internet connection to let maven automatically download javatuples 
+ stl4j in your local repository (as explained in BUILD.txt) or have a
+ working internet connection to let maven automatically download stl4j
  binaries from Maven 2's central repositories.
  

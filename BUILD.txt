@@ -1,28 +1,28 @@
 
- Building javatuples
+ Building STL4J
  -------------------
  
- To build javatuples you will need Maven 2. You can get it at:
+ To build STL4J you will need Maven 2. You can get it at:
  
      http://maven.apache.org
 
- Build and install the project executing, from the javatuples
+ Build and install the project executing, from the stl4j
  project root folder:
  
      mvn clean:clean install
      
- And you will get a fresh target/javatuples-{version}.jar file.
+ And you will get a fresh target/stl4j-{version}.jar file.
  You will also get it installed in your local repository at:
  
-     $M2_REPO/org/javatuples/javatuples/{version}/javatuples-{version}.jar
+     $M2_REPO/uk.aspyr/stl4j/{version}/stl4j-{version}.jar
 
 
 
- Generating Javadoc for javatuples
+ Generating Javadoc for stl4j
  ---------------------------------
  
- If you wish to generate the javadoc for javatuples, execute this from the
- javatuples root folder:
+ If you wish to generate the javadoc for stl4j, execute this from the
+ stl4j root folder:
  
      mvn javadoc:javadoc
      
