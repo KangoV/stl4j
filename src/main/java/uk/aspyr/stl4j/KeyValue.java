@@ -64,10 +64,10 @@ public final class KeyValue<A,B> extends Tuple implements ValueKey<A>, ValueValu
      * @return the tuple
      */
     public static <X> KeyValue<X,X> from(X[] input) {
-        return Tuples.fromArray(input, SIZE, TYPE, () ->
+        return Tuples.fromArray(input, SIZE, TYPE, values ->
             new KeyValue<>(
-                input[0],
-                input[1]));
+                values[0],
+                values[1]));
     }
 
     /**

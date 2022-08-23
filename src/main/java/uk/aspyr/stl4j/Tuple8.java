@@ -67,16 +67,16 @@ public final class Tuple8<A,B,C,D,E,F,G,H>
      * @return the tuple
      */
     public static <X> Tuple8<X,X,X,X,X,X,X,X> from(X[] input) {
-        return Tuples.fromArray(input, SIZE, TYPE, () ->
+        return Tuples.fromArray(input, SIZE, TYPE, values ->
             new Tuple8<>(
-                input[0],
-                input[1],
-                input[2],
-                input[3],
-                input[4],
-                input[5],
-                input[6],
-                input[7]
+                values[0],
+                values[1],
+                values[2],
+                values[3],
+                values[4],
+                values[5],
+                values[6],
+                values[7]
             ));
     }
 

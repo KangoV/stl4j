@@ -28,10 +28,10 @@ package uk.aspyr.stl4j;
 public final class Tuple9<A,B,C,D,E,F,G,H,I>
         extends Tuple
         implements Item0<A>,
-    Item1<B>,
-    Item2<C>,
-    Item3<D>,
-    Item4<E>,
+            Item1<B>,
+            Item2<C>,
+            Item3<D>,
+            Item4<E>,
             Item5<F>,
             Item6<G>,
             Item7<H>,
@@ -67,17 +67,17 @@ public final class Tuple9<A,B,C,D,E,F,G,H,I>
      * @return the tuple
      */
     public static <X> Tuple9<X,X,X,X,X,X,X,X,X> from(X[] input) {
-        return Tuples.fromArray(input, SIZE, TYPE, () ->
+        return Tuples.fromArray(input, SIZE, TYPE, values ->
             new Tuple9<>(
-                input[0],
-                input[1],
-                input[2],
-                input[3],
-                input[4],
-                input[5],
-                input[6],
-                input[7],
-                input[8]
+                values[0],
+                values[1],
+                values[2],
+                values[3],
+                values[4],
+                values[5],
+                values[6],
+                values[7],
+                values[8]
             ));
     }
 

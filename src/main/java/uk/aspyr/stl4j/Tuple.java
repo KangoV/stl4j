@@ -21,6 +21,7 @@ package uk.aspyr.stl4j;
 
 import java.io.Serializable;
 import java.util.*;
+import java.util.function.Consumer;
 
 
 /**
@@ -28,7 +29,7 @@ import java.util.*;
  *
  * @author Darren Bell
  */
-public abstract class Tuple implements Serializable, Comparable<Tuple> {
+public abstract class Tuple implements Serializable, Comparable<Tuple>, Iterable<Object> {
 
     private static final long serialVersionUID = 5431085632328343101L;
     
@@ -67,8 +68,19 @@ public abstract class Tuple implements Serializable, Comparable<Tuple> {
         return this.valueArray[pos];
     }
 
+    @Override
     public final Iterator<Object> iterator() {
         return this.valueList.iterator();
+    }
+
+    @Override
+    public void forEach(Consumer<? super Object> action) {
+        Iterable.super.forEach(action);
+    }
+
+    @Override
+    public Spliterator<Object> spliterator() {
+        return Iterable.super.spliterator();
     }
 
     @Override
@@ -79,38 +91,26 @@ public abstract class Tuple implements Serializable, Comparable<Tuple> {
     public final boolean contains(final Object value) {
         for (final Object val : this.valueList) {
             if (val == null) {
-                if (value == null) {
-                    return true;
-                }
+                if (value == null) return true;
             } else {
-                if (val.equals(value)) {
-                    return true;
-                }
+                if (val.equals(value)) return true;
             }
         }
         return false;
     }
 
     public final boolean containsAll(final Collection<?> collection) {
-        if (collection == null) {
-            throw new NullPointerException("Values collection cannot be null");
-        }
+        if (collection == null) throw new NullPointerException("Values collection cannot be null");
         for (final Object value : collection) {
-            if (!contains(value)) {
-                return false;
-            }
+            if (!contains(value)) return false;
         }
         return true;
     }
 
     public final boolean containsAll(final Object... values) {
-        if (values == null) {
-            throw new NullPointerException("Values array cannot be null");
-        }
+        if (values == null) throw new NullPointerException("Values array cannot be null");
         for (final Object value : values) {
-            if (!contains(value)) {
-                return false;
-            }
+            if (!contains(value)) return false;
         }
         return true;
     }
@@ -119,13 +119,9 @@ public abstract class Tuple implements Serializable, Comparable<Tuple> {
         int i = 0;
         for (final Object val : this.valueList) {
             if (val == null) {
-                if (value == null) {
-                    return i;
-                }
+                if (value == null) return i;
             } else {
-                if (val.equals(value)) {
-                    return i;
-                }
+                if (val.equals(value)) return i;
             }
             i++;
         }
@@ -136,13 +132,9 @@ public abstract class Tuple implements Serializable, Comparable<Tuple> {
         for (int i = size() - 1; i >= 0; i--) {
             final Object val = this.valueList.get(i);
             if (val == null) {
-                if (value == null) {
-                    return i;
-                }
+                if (value == null) return i;
             } else {
-                if (val.equals(value)) {
-                    return i;
-                }
+                if (val.equals(value)) return i;
             }
         }
         return -1;
@@ -160,49 +152,33 @@ public abstract class Tuple implements Serializable, Comparable<Tuple> {
     public final int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result
-                + ((this.valueList == null) ? 0 : this.valueList.hashCode());
+        result = prime * result + ((this.valueList == null) ? 0 : this.valueList.hashCode());
         return result;
     }
 
     @Override
     public final boolean equals(final Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
+        if (this == obj)  return true;
+        if (obj == null)  return false;
+        if (getClass() != obj.getClass()) return false;
         final Tuple other = (Tuple) obj;
         return Objects.equals(this.valueList, other.valueList);
     }
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public int compareTo(final Tuple o) {
-        
-        final int tLen = this.valueArray.length;
-        final Object[] oValues = o.valueArray;
-        final int oLen = oValues.length;
-        
+        int tLen = this.valueArray.length;
+        Object[] oValues = o.valueArray;
+        int oLen = oValues.length;
         for (int i = 0; i < tLen && i < oLen; i++) {
-            
-            final Comparable tElement = (Comparable)this.valueArray[i];
-            final Comparable oElement = (Comparable)oValues[i];
-            
-            final int comparison = tElement.compareTo(oElement);
+            Comparable tElement = (Comparable)this.valueArray[i];
+            Comparable oElement = (Comparable)oValues[i];
+            int comparison = tElement.compareTo(oElement);
             if (comparison != 0) {
                 return comparison;
             }
-            
         }
-        
         return (Integer.valueOf(tLen)).compareTo(Integer.valueOf(oLen));
-        
     }
-    
-    
-    
+
 }

@@ -26,7 +26,10 @@ package uk.aspyr.stl4j;
  * @author Darren Bell
  */
 public final class Tuple3<A,B,C>extends Tuple
-        implements Item0<A>, Item1<B>, Item2<C> {
+        implements
+            Item0<A>,
+            Item1<B>,
+            Item2<C> {
 
     /**
      * Create tuple with the provided value
@@ -58,11 +61,11 @@ public final class Tuple3<A,B,C>extends Tuple
      * @return the tuple
      */
     public static <X> Tuple3<X,X,X> from(X[] input) {
-        return Tuples.fromArray(input, SIZE, TYPE, () ->
-            new Tuple3<>(
-                input[0],
-                input[1],
-                input[2]
+        return Tuples.fromArray(input, SIZE, TYPE,
+            values -> new Tuple3<>(
+                values[0],
+                values[1],
+                values[2]
                 ));
     }
 

@@ -1,5 +1,7 @@
 package uk.aspyr.stl4j;
 
+import org.assertj.core.api.AssertionsForClassTypes;
+import org.assertj.core.api.ObjectAssert;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -125,7 +127,7 @@ public class TupleTest extends TupleTestBase{
     void test_create_from_index() {
         List objects = Arrays.asList(OBJ_0, OBJ_1, OBJ_2, OBJ_3, OBJ_4, OBJ_5, OBJ_6, OBJ_7, OBJ_8, OBJ_9);
         Tuple5 tuple5 = Tuple5.from(objects,5);
-        assertThat(tuple5).isEqualTo(Tuple5.of(OBJ_5, OBJ_6, OBJ_7, OBJ_8, OBJ_9));
+        AssertionsForClassTypes.assertThat(tuple5).isEqualTo(Tuple5.of(OBJ_5, OBJ_6, OBJ_7, OBJ_8, OBJ_9));
     }
 
     @Test()

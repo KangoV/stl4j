@@ -64,10 +64,10 @@ public final class LabelValue<A,B> extends Tuple implements ValueLabel<A>, Value
      * @return the tuple
      */
     public static <X> LabelValue<X,X> from(X[] input) {
-        return Tuples.fromArray(input, SIZE, TYPE, () ->
+        return Tuples.fromArray(input, SIZE, TYPE, values ->
             new LabelValue<>(
-                input[0],
-                input[1]));
+                values[0],
+                values[1]));
     }
 
     /**

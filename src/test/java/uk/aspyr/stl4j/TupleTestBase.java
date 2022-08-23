@@ -1,6 +1,7 @@
 package uk.aspyr.stl4j;
 
 import org.assertj.core.api.Assertions;
+import org.assertj.core.api.AssertionsForClassTypes;
 import org.assertj.core.api.SoftAssertions;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -36,7 +37,7 @@ public class TupleTestBase {
 
     <T extends Tuple> void check(T actual, T expected) {
         assertThat(actual.getClass()).isEqualTo(expected.getClass());
-        Assertions.assertThat(actual).isEqualTo(expected);
+        AssertionsForClassTypes.assertThat(actual).isEqualTo(expected);
         SoftAssertions.assertSoftly(softly -> {
             if (actual instanceof Item0)
                 softly.assertThat(((Item0)actual).item0()).as("check item0").isEqualTo(((Item0)expected).item0());

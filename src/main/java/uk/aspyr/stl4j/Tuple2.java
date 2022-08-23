@@ -29,8 +29,8 @@ import static uk.aspyr.stl4j.Tuples.*;
  */
 public final class Tuple2<A,B> extends Tuple
         implements
-    Item0<A>,
-    Item1<B> {
+            Item0<A>,
+            Item1<B> {
 
     /**
      * Create tuple with the provided values
@@ -66,10 +66,11 @@ public final class Tuple2<A,B> extends Tuple
      * @return the tuple
      */
     public static <X> Tuple2<X,X> from(X[] input) {
-        return Tuples.fromArray(input, SIZE, TYPE, () ->
-            new Tuple2<>(
-                input[0],
-                input[1]));
+        return Tuples.fromArray(input, SIZE, TYPE,
+            values -> new Tuple2<>(
+                values[0],
+                values[1]
+                ));
     }
 
     /**

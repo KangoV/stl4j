@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: uk.aspyr.stl4j.Tuple7Test
--------------------------------------------------------------------------------
-Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.041 s - in uk.aspyr.stl4j.Tuple7Test

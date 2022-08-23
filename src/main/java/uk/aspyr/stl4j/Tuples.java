@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-public class Tuples {
+class Tuples {
 
     static final int FIRST_INDEX = 0;
     static final boolean EXACT_SIZE = true;
@@ -19,7 +19,7 @@ public class Tuples {
             Class<T> tupleType,
             int startIndex,
             boolean exactSize,
-            Function<Object[], T> tupleFactory) {
+            Function<X[], T> tupleFactory) {
 
         // check these two as they are the values that can be passed from a factory method on a TupleXX class
         if (input == null) throw new NullPointerException("Need an non null iterable as input");
@@ -49,7 +49,7 @@ public class Tuples {
                     tupleType, startIndex));
         }
 
-        Object[] tupleValues = new Object[tupleSize];
+        X[] tupleValues = (X[]) new Object[tupleSize];
 
         boolean tooFewElements = false;
         int suppliedElementCount = 0;
@@ -83,7 +83,11 @@ public class Tuples {
 
     }
 
-    static final <X, T extends Tuple> T fromArray(X[] input, int size, Class<T> tupleClass, Supplier<T> tupleFactory) {
+    static final <X, T extends Tuple> T fromArray(
+            X[] input,
+            int size,
+            Class<T> tupleClass,
+            Function<X[], T> tupleFactory) {
 
         if (input == null) throw new NullPointerException("Need an non null array as input");
 
@@ -92,7 +96,7 @@ public class Tuples {
         assert tupleFactory != null;
         assert input.length == size;
 
-        return tupleFactory.get();
+        return tupleFactory.apply(input);
     }
 
 }
